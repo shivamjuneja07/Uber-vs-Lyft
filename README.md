@@ -130,8 +130,6 @@ Three models are trained and evaluated on an 80/20 train-test split: Linear Regr
 **Feature Importance**
 The Random Forest model's feature importances are extracted and ranked. Distance, service tier (name), and pickup location account for the top three slots consistently. Rush hour flag and weather condition appear lower but contribute meaningfully to the model's accuracy on edge cases.
 
-**Tableau Export**
-Five analysis-ready CSVs are written to `tableau_exports/`, each structured for a specific dashboard view. No transformation is needed in Tableau -- fields are typed, labeled, and pre-aggregated where appropriate.
 
 ---
 
@@ -144,19 +142,6 @@ Five analysis-ready CSVs are written to `tableau_exports/`, each structured for 
 | Gradient Boosting | ~$1.25 | ~$2.00 | ~0.93 |
 
 Gradient Boosting edges out Random Forest on all three metrics. The large gap between Linear Regression and the tree-based models confirms that the price relationships are non-linear, particularly the interaction between distance, service tier, and time of day.
-
----
-
-## Tableau Dashboard Structure
-
-| Export File | Intended Dashboard View |
-|---|---|
-| `master_rides.csv` | Full data source for all ad hoc views |
-| `hourly_aggregated.csv` | Time-of-day fare curve, rush hour heatmap |
-| `location_summary.csv` | Geographic bar chart, location-level comparison |
-| `weather_impact.csv` | Weather condition vs. fare grouped chart |
-| `tier_comparison.csv` | Uber vs. Lyft service tier price matrix |
-| `feature_importance.csv` | ML feature importance bar chart |
 
 ---
 
@@ -182,48 +167,10 @@ uber-lyft-cab-prices/
 |   |-- 10_feature_importance.png
 |   |-- 11_model_comparison.png
 |
-|-- tableau_exports/
-|   |-- master_rides.csv
-|   |-- hourly_aggregated.csv
-|   |-- location_summary.csv
-|   |-- weather_impact.csv
-|   |-- tier_comparison.csv
-|   |-- feature_importance.csv
-|
 |-- analysis.py                    # Full pipeline: EDA, stats, ML, export
 |-- requirements.txt
 |-- README.md
 ```
-
----
-
-## How to Run
-
-**1. Clone the repository**
-```bash
-git clone https://github.com/your-username/uber-lyft-cab-prices.git
-cd uber-lyft-cab-prices
-```
-
-**2. Install dependencies**
-```bash
-pip install -r requirements.txt
-```
-
-**3. Download the dataset**
-
-Download both CSV files from the [Kaggle dataset page](https://www.kaggle.com/datasets/ravi72munde/uber-lyft-cab-prices) and place them in the `data/` directory.
-
-**4. Run the full pipeline**
-```bash
-python analysis.py
-```
-
-This runs all eight stages end to end and writes plots to `outputs/` and Tableau-ready CSVs to `tableau_exports/`.
-
-**5. Open Tableau**
-
-Connect Tableau Desktop to any of the files in `tableau_exports/`. The `master_rides.csv` file can serve as the single data source for all views if you prefer a unified workbook.
 
 ---
 
@@ -238,20 +185,3 @@ scipy
 scikit-learn
 jupyter
 ```
-
-Install all at once:
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## Team
-
-Built by Shivam, Shreya, Manav, and Srivalli as part of the G4 group project.
-
----
-
-## License
-
-This project is intended for educational and research purposes. The dataset is publicly available on Kaggle under its respective terms of use.
